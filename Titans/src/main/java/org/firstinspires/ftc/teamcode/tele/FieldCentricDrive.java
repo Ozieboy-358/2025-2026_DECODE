@@ -19,7 +19,6 @@ public class FieldCentricDrive extends LinearOpMode {
         DcMotor Motor_Front_Right = hardwareMap.dcMotor.get("Motor Front Right" );
         DcMotor Motor_Back_Left = hardwareMap.dcMotor.get(  "Motor Back Left"   );
         DcMotor Motor_Back_Right = hardwareMap.dcMotor.get( "Motor Back Right"  );
-        CRServo Cylinder  = hardwareMap.crservo.get("Cylinder");
         CRServo Launcher  = hardwareMap.crservo.get("launch");
 
 
@@ -83,29 +82,14 @@ public class FieldCentricDrive extends LinearOpMode {
             Motor_Back_Left.setPower(backLeftPower);
             Motor_Back_Right.setPower(backRightPower);
 
-            if (gamepad2.a){
-                Cylinder.setDirection(DcMotorSimple.Direction.FORWARD);
-                Cylinder.setPower(1);
-            }
-            if (gamepad2.x){
-                Cylinder.setPower(0);
+
+            if (gamepad2.right_trigger > 0.1){
+                Launcher.setPower(-1);
             }
 
-            //what button for launcher
-            //this is the ooutline gamepad 2 is gunner gamepad 1 is driver gamepad
-            //gamepad2.(buttom they are wanting to use)
             if (gamepad2.right_trigger > 0.1){
-                //negative if runs wrong way
-                //tuen as needed
                 Launcher.setPower(1);
-            }
-
-            //ill let you handle this for now while that is importing
-            //no, there havent said anything yet
-
-
-            //idk how its set up or how the reset is on the launcher but 0 power for now if it t reset keep going forward or go backwards
-            if (gamepad2.right_trigger > 0.1){
+            }else{
                 Launcher.setPower(0);
             }
 
